@@ -9,6 +9,7 @@ public abstract class Entity implements iMovable{
     private float speed;
     private Color color;
     private Rectangle bounds;
+    private boolean collected = false;
 
     public Entity()
     {
@@ -67,6 +68,14 @@ public abstract class Entity implements iMovable{
     public void setBounds(Rectangle bounds)
     {
         this.bounds = bounds;
+    }
+    
+    public boolean isCollected() {
+        return collected;
+    }
+
+    public void setCollected(boolean collected) {
+        this.collected = collected;
     }
 
     public void draw(SpriteBatch batch)
