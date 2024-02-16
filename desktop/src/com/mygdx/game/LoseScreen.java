@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Rectangle;
 
-public class LoseScreen {
+public class LoseScreen extends Scene {
     private BitmapFont font;
     private GlyphLayout layout;
     private Texture backgroundTexture;
@@ -15,7 +15,7 @@ public class LoseScreen {
     private Rectangle retryBounds;
 
     public LoseScreen() {
-        font = new BitmapFont();
+    	font = new BitmapFont();
         layout = new GlyphLayout();
         
         backgroundTexture = new Texture(Gdx.files.internal("lose.png"));
@@ -33,7 +33,6 @@ public class LoseScreen {
     }
 
     public void draw(Batch batch) {
-    	
     	batch.begin();
     	batch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     	
@@ -45,6 +44,7 @@ public class LoseScreen {
         
         batch.draw(retryButton, retryBounds.x, retryBounds.y, retryBounds.width, retryBounds.height);
         batch.end();
+    	
     }
     
     public boolean isRetryClicked(float x, float y) {

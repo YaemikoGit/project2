@@ -7,16 +7,13 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Rectangle;
 
-public class WinScreen {
-    private BitmapFont font;
-    private GlyphLayout layout;
+public class WinScreen extends Scene{
     private Texture backgroundTexture;
     private Texture retryButton;
     private Rectangle retryBounds;
 
     public WinScreen() {
-        font = new BitmapFont();
-        layout = new GlyphLayout();
+        super();
         
         backgroundTexture = new Texture(Gdx.files.internal("win.jpg"));
         retryButton = new Texture(Gdx.files.internal("retry.png"));
@@ -38,10 +35,10 @@ public class WinScreen {
         batch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         
         String text = "You win!\nCongratulations!";
-        layout.setText(font, text);
-        float x = (Gdx.graphics.getWidth() - layout.width) / 2;
-        float y = (Gdx.graphics.getHeight() + layout.height) / 2;
-        font.draw(batch, text, x, y);
+        super.getlayout().setText(getFont(), text);
+        float x = (Gdx.graphics.getWidth() - super.getlayout().width) / 2;
+        float y = (Gdx.graphics.getHeight() + super.getlayout().height) / 2;
+        super.getFont().draw(batch, text, x, y);
         
         batch.draw(retryButton, retryBounds.x, retryBounds.y, retryBounds.width, retryBounds.height);
         batch.end();
@@ -52,7 +49,7 @@ public class WinScreen {
     }
 
     public void dispose() {
-        font.dispose();
+        super.getFont().dispose();
         backgroundTexture.dispose();
         retryButton.dispose();
     }

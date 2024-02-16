@@ -15,26 +15,32 @@ public class GameMaster extends ApplicationAdapter {
     private final int NUM_DROPS = 10;
     private Entity[] drops = new Entity[NUM_DROPS];
     private EntityManager em;
-    private PauseScreen pauseScreen;
-    private WinScreen winScreen;
-    private LoseScreen loseScreen;
-    private boolean isPaused = false;
-    private boolean isWin = false;
-    private boolean isLose = false;
+
     private float timeElapsed = 0;
     private int dropletsCollected = 0;
     private Texture backgroundTexture;
+    
+    //sceneManager
+//  private PauseScreen pauseScreen;
+//  private WinScreen winScreen;
+//  private LoseScreen loseScreen;
+    private boolean isPaused = false;
+    private boolean isWin = false;
+    private boolean isLose = false;	
+    private SceneManager sm;
+    private int current;
 
     @Override
     public void create() {
-        pauseScreen = new PauseScreen();
-        winScreen = new WinScreen();
-        loseScreen = new LoseScreen();
+//        pauseScreen = new PauseScreen();
+//        winScreen = new WinScreen();
+//        loseScreen = new LoseScreen();
 
         batch = new SpriteBatch();
 
         CollisionHandler collisionHandler = new CollisionHandler();
         em = new EntityManager(collisionHandler);
+        sm = new SceneManager();
 
         Random random = new Random();
         
@@ -85,14 +91,18 @@ public class GameMaster extends ApplicationAdapter {
         }
 
         if (isWin) {
-            winScreen.draw(batch);
+        	current = 1;
+            sm.loadScene(batch, current);
+            
         } 
         else if (isLose) {
-            loseScreen.draw(batch);
+        	current = 2;
+            sm.loadScene(batch, current);
             
         } 
         else if (isPaused) {
-            pauseScreen.draw(batch);
+        	current = 3;
+            sm.loadScene(batch, current);
         } 
         else {
             em.draw(batch);
@@ -102,9 +112,9 @@ public class GameMaster extends ApplicationAdapter {
     @Override
     public void dispose() {
         batch.dispose();
-        pauseScreen.dispose();
-        winScreen.dispose();
-        loseScreen.dispose();
+//        pauseScreen.dispose();
+//        winScreen.dispose();
+//        loseScreen.dispose();
         backgroundTexture.dispose();
     }
 }
