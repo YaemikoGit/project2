@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.Random;
 
 public class GameMaster extends ApplicationAdapter {
+	
     private SpriteBatch batch;
     private Entity bucket;
     private final int NUM_DROPS = 10;
@@ -36,11 +37,13 @@ public class GameMaster extends ApplicationAdapter {
 //        winScreen = new WinScreen();
 //        loseScreen = new LoseScreen();
 
+    	sm = new SceneManager();
+    	
         batch = new SpriteBatch();
 
         CollisionHandler collisionHandler = new CollisionHandler();
         em = new EntityManager(collisionHandler);
-        sm = new SceneManager();
+       
 
         Random random = new Random();
         
@@ -59,6 +62,10 @@ public class GameMaster extends ApplicationAdapter {
 
     @Override
     public void render() {
+    	
+    	//sm.play();
+    	
+    	
     	batch.begin();
         batch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
@@ -103,6 +110,8 @@ public class GameMaster extends ApplicationAdapter {
         else if (isPaused) {
         	current = 3;
             sm.loadScene(batch, current);
+            
+            //sm.paused();
         } 
         else {
             em.draw(batch);
@@ -116,5 +125,7 @@ public class GameMaster extends ApplicationAdapter {
 //        winScreen.dispose();
 //        loseScreen.dispose();
         backgroundTexture.dispose();
+        
+        //sm.stop();
     }
 }
