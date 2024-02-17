@@ -16,7 +16,4 @@ public class PauseScreen extends Scene {
         super.drawPause(batch);
     }
 
-    public void dispose() {
-        super.getFont().dispose();
-    }
 }
