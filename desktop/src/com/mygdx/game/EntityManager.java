@@ -13,13 +13,14 @@ public class EntityManager {
     public EntityManager(CollisionHandler collisionHandler) {
         entityList = new ArrayList<Entity>();
         this.collisionHandler = collisionHandler;
-        
-        
-        
     }
 
     public void addEntity(Entity e) {
         entityList.add(e);
+    }
+    
+    public void removeEntity(Entity e) {
+    	entityList.remove(e);
     }
 
     public void draw(SpriteBatch batch) {
